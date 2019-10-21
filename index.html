@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Healthy App</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+</head>
+<body>
+
+<div id="page-bmi" data-role="page">
+
+    <!-- 內容 -->
+    <div data-role="content">
+        <p>Guess a Number</p>
+        <input type="text" name="numberguess" id="numberguess" value="">
+
+        <br>
+
+        <button class="ui-btn ui-shadow" id="btn-radom">Submit</button>
+
+        <br>
+
+        <div id="trytimes"></div>
+        <div id="errormessage"></div>
+    </div>
+
+
+</div>
+<script>
+$(function(){
+var num1 = Math.floor(Math.random() *6 + 1);
+var time =0
+$('#btn-radom').on('click',function(e){
+    e.preventDefault();
+    
+    var txtnumberguess = parseFloat($('#numberguess').val());
+    console.log(num1)
+    if (isNaN(txtnumberguess)) {
+            alert('error');
+            return;
+        };
+
+    if(txtnumberguess >num1 || txtnumberguess <num1){
+        time = time + 1;
+        $("#errormessage").show();
+        $("#errormessage").html("Try samll / larger number");
+        if(time >=1){
+            $("#trytimes").show();
+            $("#trytimes").html("You have tried "+time+" times");
+            return;
+        }
+    }else{
+        time = 0;
+        $("#errormessage").hide();
+        $("#trytimes").hide();
+    }
+
+
+
+
+
+})
+
+
+})
+
+
+</script>
+</body>
+</html>
